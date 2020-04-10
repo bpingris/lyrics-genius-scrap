@@ -7,7 +7,7 @@ const cheerio = require("cheerio");
  * @returns {string}
  */
 function format(s) {
-  return s.replace(/ /g, "-").replace(/'/g, "");
+  return s.replace(/ /g, "-").replace(/'|,|"/g, "");
 }
 
 /**
@@ -19,7 +19,6 @@ async function fetchLyrics(artist, songTitle) {
   const res = await fetch(
     `https://genius.com/${format(artist)}-${format(songTitle)}-lyrics`
   );
-
   const html = await res.text();
   const $ = cheerio.load(html);
   const blocLyrics = $("div.lyrics");
