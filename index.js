@@ -15,7 +15,7 @@ function format(s) {
  * @param {string} artist
  * @param {string} songTitle
  */
-async function fetchPageData(artist, songTitle) {
+async function fetchLyrics(artist, songTitle) {
   const res = await fetch(
     `https://genius.com/${format(artist)}-${format(songTitle)}-lyrics`
   );
@@ -30,5 +30,5 @@ async function fetchPageData(artist, songTitle) {
 !(async function main(args) {
   const artist = args[2] || "watsky";
   const song = args[3] || "whoa whoa whoa";
-  console.log(await fetchPageData(artist, song));
+  console.log(await fetchLyrics(artist, song));
 })(process.argv);
